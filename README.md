@@ -1,6 +1,6 @@
 # ReciboPro
 
-Importe uma planilha `.xlsx`, escolha a semana e gere todos os recibos de prestação de serviço da equipe de uma vez — um PDF por pessoa, com valor por extenso e data, pronto para imprimir e assinar. Windows, grátis, sem cadastro.
+Importe uma planilha `.xlsx`, escolha a semana e gere todos os recibos de prestação de serviço da equipe de uma vez — um por pessoa, com valor por extenso e data — num único PDF pronto para imprimir e assinar. Windows, grátis, sem cadastro.
 
 ![ReciboPro em uso](docs/recibopro-demo.gif)
 
