@@ -1,22 +1,20 @@
 # ReciboPro
 
-Importe uma planilha `.xlsx`, escolha a semana e gere todos os recibos de prestação de serviço da equipe de uma vez — um PDF por pessoa, com valor por extenso e data, pronto para imprimir e assinar. Windows, grátis, sem cadastro.
+Toda semana alguém precisa emitir os recibos de pagamento da equipe — um por pessoa, com nome, valor, valor por extenso e data. Feito à mão, é uma hora de trabalho mecânico que se repete sem fim.
 
-**[Instalar na Microsoft Store →](https://apps.microsoft.com/detail/9PG33DDBKDTC)** · Grátis · Produtividade
+O ReciboPro parte da sua planilha de ponto: você importa o `.xlsx`, confere a prévia recibo a recibo e gera todos de uma vez. A manhã de sábado vira um clique.
+
+**[Instalar na Microsoft Store →](https://apps.microsoft.com/detail/9PG33DDBKDTC)** · Grátis · Windows · Sem cadastro
 
 ---
 
 ## De um script de sábado a um app na Store
 
-Todo sábado, a mesma rotina: abrir a planilha de ponto e montar recibo por recibo na mão — nome, valor, valor por extenso, data —, imprimir, repetir. Cerca de 18 por semana. Em algum momento no meio da pilha a conta não fecha: isso não devia ser feito assim.
+Comecei com um script Python pra não fazer na mão os recibos de uma cerâmica todo sábado. Ele lia a planilha, somava, escrevia os valores por extenso e montava tudo num PDF. Resolveu o meu problema — mas só rodava pela linha de comando, e os dados da empresa estavam fixos no código. Servia para uma empresa só: a minha.
 
-A primeira versão foi um script Python. Lia a planilha, calculava os totais, escrevia os valores por extenso e montava todos os recibos num único PDF. Dezoito recibos em segundos — a manhã de sábado virou um clique.
+Transformar aquilo em produto foi a V2: reescrita em Electron e React, com a empresa configurada pela própria tela e instalação em dois cliques. Entrou na Microsoft Store em junho de 2026, depois de seis reprovações de certificação — de longe a parte mais difícil do projeto.
 
-Faltava tudo em volta do clique. O script rodava pela linha de comando e os dados da empresa estavam fixos no código: usar em outro lugar exigia editar o `.py`, instalar Python e regerar o `.exe`. Era um script com uma interface na frente, não um produto.
-
-A **V2** fecha essa lacuna — reescrita em Electron + React + TypeScript, com a empresa configurável pela própria interface e instalação em dois cliques. Foi publicada na Microsoft Store em junho de 2026, depois de seis reprovações de certificação. A ideia é a mesma; agora serve qualquer pequena empresa.
-
-O caminho completo está em dois artigos: [a V1 em Python](https://medium.com/@cleitoneugenio87/s%C3%A1bado-de-gestor-como-automatizei-os-recibos-de-pagamento-de-uma-cer%C3%A2mica-com-python-a006033e4457) e [a V2 e a certificação na Store](https://medium.com/@cleitoneugenio87/de-script-python-a-app-na-microsoft-store-a-hist%C3%B3ria-completa-do-recibopro-f412f6cfd67c).
+Escrevi o caminho todo em dois artigos: [a V1 em Python](https://medium.com/@cleitoneugenio87/s%C3%A1bado-de-gestor-como-automatizei-os-recibos-de-pagamento-de-uma-cer%C3%A2mica-com-python-a006033e4457) e [a V2 e a certificação na Store](https://medium.com/@cleitoneugenio87/de-script-python-a-app-na-microsoft-store-a-hist%C3%B3ria-completa-do-recibopro-f412f6cfd67c).
 
 ---
 
