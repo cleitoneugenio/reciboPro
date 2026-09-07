@@ -1,27 +1,26 @@
 # ReciboPro
 
-Gerador de recibos de prestação de serviço para Windows. Lê uma planilha Excel e gera, em um clique, um PDF com um recibo por funcionário — nome, valor, valor por extenso em português e data, prontos para imprimir e assinar.
+Importe uma planilha `.xlsx`, escolha a semana e gere todos os recibos de prestação de serviço da equipe de uma vez — um PDF por pessoa, com valor por extenso e data, pronto para imprimir e assinar. Windows, grátis, sem cadastro.
 
-**[Instalar na Microsoft Store →](https://apps.microsoft.com/detail/9PG33DDBKDTC)** · Grátis · Categoria Produtividade
-
----
-
-## A história
-
-O ReciboPro nasceu de uma tarefa de sábado numa cerâmica no interior do Ceará. Toda semana, ~18 recibos de pagamento feitos à mão: abrir a planilha de ponto, copiar nome, digitar valor, escrever o total por extenso, calcular, imprimir, repetir. Trabalho que não cansa pelo esforço — cansa pela repetição.
-
-A primeira versão foi um script Python que lia a planilha, identificava quem trabalhou na semana, calculava o total, convertia o valor para texto por extenso e cuspia todos os recibos num único PDF. Dezoito recibos em segundos, todos certos. O que era um sábado inteiro virou um clique.
-
-Depois veio o problema óbvio: era uma ferramenta que só quem sabe abrir um terminal conseguia usar — e ferramenta que só o autor usa é ferramenta pela metade. Interface gráfica, prévia em tempo real, dark mode. E, por fim, a constatação de que os dados da empresa estavam _hardcoded_ no código: para outra empresa usar, teria que editar o `.py`, instalar Python e regerar o executável. Isso não é produto, é script com uma interface na frente.
-
-A V2 é a reescrita que resolve isso — Electron + React + TypeScript, empresa configurável pela interface, instalável em dois cliques, publicada na Microsoft Store. O relato completo está nos dois artigos:
-
-- [Sábado de gestor: como automatizei os recibos de pagamento de uma cerâmica com Python](https://medium.com/@cleitoneugenio87/s%C3%A1bado-de-gestor-como-automatizei-os-recibos-de-pagamento-de-uma-cer%C3%A2mica-com-python-a006033e4457) — a V1
-- [De script Python a app na Microsoft Store: a história completa do ReciboPro](https://medium.com/@cleitoneugenio87/de-script-python-a-app-na-microsoft-store-a-hist%C3%B3ria-completa-do-recibopro-f412f6cfd67c) — a V2 e a certificação
+**[Instalar na Microsoft Store →](https://apps.microsoft.com/detail/9PG33DDBKDTC)** · Grátis · Produtividade
 
 ---
 
-## De script a produto
+## De um script de sábado a um app na Store
+
+Todo sábado, a mesma rotina: abrir a planilha de ponto e montar recibo por recibo na mão — nome, valor, valor por extenso, data —, imprimir, repetir. Cerca de 18 por semana. Em algum momento no meio da pilha a conta não fecha: isso não devia ser feito assim.
+
+A primeira versão foi um script Python. Lia a planilha, calculava os totais, escrevia os valores por extenso e montava todos os recibos num único PDF. Dezoito recibos em segundos — a manhã de sábado virou um clique.
+
+Faltava tudo em volta do clique. O script rodava pela linha de comando e os dados da empresa estavam fixos no código: usar em outro lugar exigia editar o `.py`, instalar Python e regerar o `.exe`. Era um script com uma interface na frente, não um produto.
+
+A **V2** fecha essa lacuna — reescrita em Electron + React + TypeScript, com a empresa configurável pela própria interface e instalação em dois cliques. Foi publicada na Microsoft Store em junho de 2026, depois de seis reprovações de certificação. A ideia é a mesma; agora serve qualquer pequena empresa.
+
+O caminho completo está em dois artigos: [a V1 em Python](https://medium.com/@cleitoneugenio87/s%C3%A1bado-de-gestor-como-automatizei-os-recibos-de-pagamento-de-uma-cer%C3%A2mica-com-python-a006033e4457) e [a V2 e a certificação na Store](https://medium.com/@cleitoneugenio87/de-script-python-a-app-na-microsoft-store-a-hist%C3%B3ria-completa-do-recibopro-f412f6cfd67c).
+
+---
+
+## V1 e V2 lado a lado
 
 | | **V1 — Python** | **V2 — Electron** |
 |---|---|---|
