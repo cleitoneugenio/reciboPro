@@ -323,8 +323,7 @@ def secao_objetivo(s: dict) -> list:
         Paragraph('1. OBJETIVO DO PROGRAMA', s['secao']),
         Paragraph(
             'O programa nasceu da necessidade de eliminar o trabalho manual de criar '
-            'recibos de pagamento toda semana para os funcionários da empresa '
-            '<b>GF MUNIZ ARTEFACTOS DE CERAMICA EIRELI</b>.',
+            'recibos de pagamento toda semana para os funcionários da empresa.',
             s['corpo'],
         ),
         Paragraph(
@@ -497,7 +496,7 @@ def secao_estrutura(s: dict) -> list:
             '        Spacer(1, 0.5 * cm),',
             '        Paragraph(corpo_texto, corpo),',
             '        Spacer(1, 0.4 * cm),',
-            "        Paragraph(f'Bela Cruz, {data_str}.', corpo),",
+            "        Paragraph(f'{EMPRESA_CIDADE}, {data_str}.', corpo),",
             '        Spacer(1, 1.8 * cm),',
             "        HRFlowable(width='55%', ...),   # linha de assinatura",
             '        Spacer(1, 0.25 * cm),',
@@ -1383,7 +1382,7 @@ def secao_logging(s: dict) -> list:
         Paragraph('Localização do arquivo de log', s['subsecao']),
         *bloco_codigo([
             r'%APPDATA%\GeradorRecibos\gerador.log',
-            r'# Exemplo: C:\Users\cleit\AppData\Roaming\GeradorRecibos\gerador.log',
+            r'# Exemplo: C:\Users\SeuUsuario\AppData\Roaming\GeradorRecibos\gerador.log',
         ], s),
 
         Paragraph('Configuração do RotatingFileHandler', s['subsecao']),
@@ -1563,9 +1562,9 @@ def secao_bugs_resolvidos(s: dict) -> list:
 # ---------------------------------------------------------------------------
 
 def gerar_documentacao():
-    arquivo_pdf = (
-        r'C:\Users\cleit\OneDrive\Documentos\recibo_de_pagamento'
-        r'\documentacao_gerar_recibos.pdf'
+    arquivo_pdf = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)),
+        'documentacao_gerar_recibos.pdf',
     )
 
     doc = SimpleDocTemplate(

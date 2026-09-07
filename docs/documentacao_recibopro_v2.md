@@ -1,6 +1,6 @@
 # DOCUMENTAÇÃO TÉCNICA — reciboPro V2
 
-![Ícone do reciboPro](recibo.png)
+![Ícone do reciboPro](../resources/icon.png)
 
 **Arquivo principal:** `src/` (monorepo Electron)
 **Linguagem:** TypeScript 5.7 (strict mode)
@@ -13,7 +13,7 @@ Este documento explica passo a passo como a V2 do programa foi construída, o mo
 
 ## 1. OBJETIVO DO PROGRAMA
 
-A V1 (Python + customtkinter) resolveu o problema para a GF MUNIZ ARTEFACTOS DE CERAMICA EIRELI: eliminar a criação manual de recibos toda semana. Funcionou — mas tinha um problema estrutural: os dados da empresa estavam **hardcoded** no código-fonte. Para usar em outra empresa, era necessário editar o arquivo `.py`, instalar Python e regerar o `.exe`.
+A V1 (Python + customtkinter) resolveu o problema para uma cerâmica: eliminar a criação manual de recibos toda semana. Funcionou — mas tinha um problema estrutural: os dados da empresa estavam **hardcoded** no código-fonte. Para usar em outra empresa, era necessário editar o arquivo `.py`, instalar Python e regerar o `.exe`.
 
 **A V2 resolve isso:**
 
@@ -55,11 +55,9 @@ A V1 usava Python + customtkinter + PyInstaller. Funcionava, mas para distribuir
 
 **Por que o tamanho maior vale a pena?** Porque em troca temos controle absoluto de pixel sobre o layout, tipografia editorial, transições, design system com CSS variables, e uma interface que pode evoluir indefinidamente sem limitações de widget.
 
-**Interface da V1 em uso real (GF MUNIZ ARTEFACTOS DE CERAMICA EIRELI):**
+**Interface da V1 em uso real:**
 
-![Interface V1 — Gerador de Recibos Python/customtkinter](scheenshot_gui.png.png)
-
-*A V1 mostrava o logo Forte Telha hardcoded, a lista de funcionários com checkboxes, o preview do recibo ao lado, e o status "PDF gerado com sucesso." na parte inferior. Tudo funcional — mas amarrado a uma empresa específica.*
+*A V1 mostrava o logo da empresa hardcoded, a lista de funcionários com checkboxes, o preview do recibo ao lado, e o status "PDF gerado com sucesso." na parte inferior. Tudo funcional — mas amarrado a uma empresa específica.*
 
 ### 2.2 — Por que Electron e não Tauri?
 
@@ -426,7 +424,7 @@ Duas bibliotecas foram avaliadas:
 | TypeScript types | Incluídos no pacote | Separados (`@types/xlsx`) |
 | Leitura de fórmulas | `{ formula: 'SUM(C2:J2)', result: 700 }` | Depende de `cellFormula`/`cellNF` flags |
 
-A planilha da GF MUNIZ usa fórmulas na coluna TOTAL (`=SUM(C2:J2)`). O `exceljs` expõe o resultado calculado via `CellFormulaValue.result` de forma explícita e tipada.
+A planilha de ponto usa fórmulas na coluna TOTAL (`=SUM(C2:J2)`). O `exceljs` expõe o resultado calculado via `CellFormulaValue.result` de forma explícita e tipada.
 
 ### 8.2 — cellNumber() e cellString()
 

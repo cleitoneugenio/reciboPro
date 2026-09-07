@@ -100,7 +100,7 @@ export default function Settings({ current, onSaved, onBack }: Props) {
               <Field label="Nome" value={form.name} onChange={(v) => setForm((f) => ({ ...f, name: v }))} placeholder="GF Muniz Artefactos de Cerâmica" />
               <Field label="CNPJ" value={form.cnpj} onChange={(v) => setForm((f) => ({ ...f, cnpj: formatCNPJ(v) }))} placeholder="00.000.000/0000-00" />
               <Field label="Endereço" value={form.address} onChange={(v) => setForm((f) => ({ ...f, address: v }))} placeholder="Rua das Flores, 123" />
-              <Field label="Cidade / UF" value={form.city} onChange={(v) => setForm((f) => ({ ...f, city: v }))} placeholder="Bela Cruz - CE" />
+              <Field label="Cidade / UF" value={form.city} onChange={(v) => setForm((f) => ({ ...f, city: v }))} placeholder="São Paulo - SP" />
 
               <HeaderToggles
                 showName={form.headerShowName}

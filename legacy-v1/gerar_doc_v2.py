@@ -538,10 +538,11 @@ def build_cover(styles, icon_path):
 
 # ─── Main ──────────────────────────────────────────────────────────────────
 def main():
-    base_dir = r'c:\Users\cleit\OneDrive\Documentos\reciboPro'
-    md_path  = os.path.join(base_dir, 'documentacao_recibopro_v2.md')
-    out_path = os.path.join(base_dir, 'documentacao_recibopro_v2.pdf')
-    icon_path = os.path.join(base_dir, 'recibo.png')
+    repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    docs_dir  = os.path.join(repo_root, 'docs')
+    md_path  = os.path.join(docs_dir, 'documentacao_recibopro_v2.md')
+    out_path = os.path.join(docs_dir, 'documentacao_recibopro_v2.pdf')
+    icon_path = os.path.join(repo_root, 'resources', 'icon.png')
 
     with open(md_path, encoding='utf-8') as f:
         md_text = f.read()

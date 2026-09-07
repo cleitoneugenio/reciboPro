@@ -170,13 +170,13 @@ Configuração em `electron-builder.yml`. Veja [STORE_SETUP.md](STORE_SETUP.md) 
 npm run test
 ```
 
-**58 testes, 3 suítes:**
+**59 testes, 3 suítes:**
 
 | Suíte | Arquivo | O que testa |
 |---|---|---|
 | `utils.test.ts` | 35 testes | `valorPorExtenso`, `formatarData`, `applyTemplate`, DEFAULT_TEMPLATE, placeholders |
 | `extenso.test.ts` | 14 testes | Conversão de valores para português (centavos, milhões, edge cases) |
-| `excel.test.ts` | 9 testes | Leitura de planilha, múltiplas abas, células com fórmula/rich text |
+| `excel.test.ts` | 10 testes | Leitura de planilha, múltiplas abas, células com fórmula/rich text |
 
 ---
 

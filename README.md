@@ -25,14 +25,14 @@ A V2 é a reescrita que resolve isso — Electron + React + TypeScript, empresa 
 
 | | **V1 — Python** | **V2 — Electron** |
 |---|---|---|
-| Status | Em produção na cerâmica | Publicada na Microsoft Store (15/06/2026) |
+| Status | Descontinuada — mantida como histórico em [`legacy-v1/`](legacy-v1/) | **Ativa** — publicada na Microsoft Store (15/06/2026) |
 | Público | Uma empresa (dados fixos no código) | Qualquer empresa (config pela interface) |
 | UI | Tkinter → customtkinter (dark mode) | React 19 + design tokens CSS, dark-first |
 | Leitura `.xlsx` | pandas | exceljs |
 | Geração de PDF | ReportLab | pdf-lib (JavaScript puro) |
 | Valor por extenso | num2words | implementação própria (`src/shared/utils.ts`) |
 | Distribuição | `GeradorRecibos.exe` (~40 MB, PyInstaller `--onefile`) | Instalador NSIS + pacote MSIX |
-| Testes | 29 (pytest) | 58 (vitest) |
+| Testes | 29 (pytest) | 59 (vitest) |
 
 As duas versões convivem neste repositório — ver [Estrutura do repositório](#estrutura-do-repositório).
 
@@ -92,7 +92,7 @@ Se o campo ficar vazio, o texto padrão é usado automaticamente.
 ```bash
 npm install
 npm run dev        # Electron com HMR
-npm run test       # 58 testes unitários (vitest)
+npm run test       # 59 testes unitários (vitest)
 npm run build      # tsc --noEmit + compila main + renderer + preload
 ```
 
@@ -104,16 +104,18 @@ npm run dist:msix   # apenas MSIX
 npm run pack        # pasta não empacotada (para teste)
 ```
 
-Veja [STORE_SETUP.md](STORE_SETUP.md) para o guia completo de publicação na Microsoft Store e [ARCHITECTURE.md](ARCHITECTURE.md) para a arquitetura detalhada (processos Electron, IPC, geração de PDF, persistência).
+Veja [docs/STORE_SETUP.md](docs/STORE_SETUP.md) para o guia completo de publicação na Microsoft Store e [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) para a arquitetura detalhada (processos Electron, IPC, geração de PDF, persistência).
 
-### V1 (Python)
+### V1 (Python) — histórico
+
+O código da V1 vive em [`legacy-v1/`](legacy-v1/) e não é mais mantido. Os dados da empresa (nome, CNPJ, endereço) foram substituídos por valores de exemplo — ajuste as constantes no topo de `legacy-v1/gerar_recibos.py` ou defina as variáveis de ambiente `RECIBO_EMPRESA`, `RECIBO_CNPJ`, `RECIBO_SEDE`, `RECIBO_CIDADE`.
 
 ```bash
+cd legacy-v1
 pip install -r requirements.txt
 python gerar_recibos.py ponto_semana.xlsx        # abre a GUI já com a planilha carregada
+python -m PyInstaller GeradorRecibos.spec         # build do executável
 ```
-
-Build do executável: `python -m PyInstaller GeradorRecibos.spec`.
 
 ---
 
@@ -131,7 +133,7 @@ Build do executável: `python -m PyInstaller GeradorRecibos.spec`.
 | Testes | vitest |
 | Packaging | electron-builder (NSIS + MSIX) |
 
-Por que sem backend Python na V2: manter Python implicaria dois runtimes (+60 MB), IPC por subprocesso e duas linguagens — sem ganho real para esta lógica. Detalhes em [ARCHITECTURE.md](ARCHITECTURE.md#por-que-sem-python-backend).
+Por que sem backend Python na V2: manter Python implicaria dois runtimes (+60 MB), IPC por subprocesso e duas linguagens — sem ganho real para esta lógica. Detalhes em [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md#por-que-sem-python-backend).
 
 ---
 
@@ -148,26 +150,32 @@ Os artigos documentam os mais traiçoeiros — os que não aparecem em tutorial 
 
 ## Estrutura do repositório
 
+A raiz é a aplicação **V2** (layout padrão electron-vite). O restante está organizado em pastas:
+
 ```
-V1 (Python)
-  gerar_recibos.py         — script + GUI (customtkinter)
-  test_gerar_recibos.py    — 29 testes pytest
-  GeradorRecibos.spec      — build PyInstaller
-  gerar_logo.py            — geração de assets (baixa as fontes Playfair Display)
-  requirements.txt
-
-V2 (Electron)
-  src/main/                — processo main: IPC, serviços de Excel e PDF, store
-  src/preload/             — contextBridge (window.api tipado)
-  src/renderer/            — React: onboarding, tela principal, configurações
-  src/shared/              — tipos + valorPorExtenso, formatarData, applyTemplate
-  tests/                   — 58 testes vitest
-  resources/               — ícones, tiles APPX, planilha de exemplo embutida
-  electron-builder.yml     — NSIS + MSIX
-
-Docs
-  ARCHITECTURE.md          — arquitetura V2 detalhada
-  STORE_SETUP.md           — publicação na Microsoft Store
+.                          raiz = V2 (Electron)
+├── src/
+│   ├── main/              processo main: IPC, serviços de Excel e PDF, store
+│   ├── preload/           contextBridge (window.api tipado)
+│   ├── renderer/          React: onboarding, tela principal, configurações
+│   └── shared/            tipos + valorPorExtenso, formatarData, applyTemplate
+├── tests/                 59 testes vitest
+├── resources/             ícones, tiles APPX, planilha de exemplo embutida
+├── electron-builder.yml   NSIS + MSIX
+│
+├── docs/
+│   ├── ARCHITECTURE.md              arquitetura V2 detalhada
+│   ├── STORE_SETUP.md               publicação na Microsoft Store
+│   └── documentacao_recibopro_v2.md documentação longa da V2
+│
+├── store-assets/          imagens da listagem da Microsoft Store (não vão no build)
+│
+└── legacy-v1/             V1 em Python — histórico, sem manutenção
+    ├── gerar_recibos.py        script + GUI (customtkinter)
+    ├── test_gerar_recibos.py   29 testes pytest
+    ├── GeradorRecibos.spec     build PyInstaller
+    ├── gerar_logo.py / gerar_icone.py / gerar_documentacao.py / gerar_doc_v2.py
+    └── requirements.txt
 ```
 
 ---

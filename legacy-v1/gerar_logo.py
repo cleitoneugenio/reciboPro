@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Gera logo_forte_telha.png a partir do design Forte Telha.
+Gera logo_forte_telha.png (wordmark da empresa) usando a fonte Playfair Display.
+Ajuste LOGO_TITULO / LOGO_SUBTITULO (ou as variáveis de ambiente) para a sua marca.
 Requer: Pillow  (pip install pillow)
 """
 
@@ -9,6 +10,9 @@ import os
 from PIL import Image, ImageDraw, ImageFont
 
 DIR = os.path.dirname(os.path.abspath(__file__))
+
+LOGO_TITULO = os.environ.get('RECIBO_LOGO_TITULO', 'EMPRESA EXEMPLO')
+LOGO_SUBTITULO = os.environ.get('RECIBO_LOGO_SUBTITULO', 'PRESTAÇÃO DE SERVIÇO')
 
 # ── Baixar fontes Playfair Display ──────────────────────────────────────────
 FONTS = {
@@ -39,13 +43,13 @@ W, H = 960, 220
 img  = Image.new('RGBA', (W, H), BG)
 draw = ImageDraw.Draw(img)
 
-# ── "FORTE TELHA" ────────────────────────────────────────────────────────────
+# ── Título (wordmark) ───────────────────────────────────────────────────────
 try:
     font_title = ImageFont.truetype(FONTS['playfair_bold'][1], size=96)
 except Exception:
     font_title = ImageFont.load_default()
 
-title  = 'FORTE TELHA'
+title  = LOGO_TITULO
 bbox_t = draw.textbbox((0, 0), title, font=font_title)
 tw     = bbox_t[2] - bbox_t[0]
 tx     = (W - tw) // 2
@@ -63,13 +67,13 @@ sep_x0  = (W - tw) // 2 + 20
 sep_x1  = (W + tw) // 2 - 20
 draw.line([(sep_x0, sep_y), (sep_x1, sep_y)], fill=(*RED, 160), width=1)
 
-# ── "INDÚSTRIA DE CERÂMICA" ──────────────────────────────────────────────────
+# ── Subtítulo ───────────────────────────────────────────────────────────────
 try:
     font_sub = ImageFont.truetype(FONTS['playfair_sc'][1], size=24)
 except Exception:
     font_sub = ImageFont.load_default()
 
-subtitle        = 'INDÚSTRIA DE CERÂMICA'
+subtitle        = LOGO_SUBTITULO
 subtitle_spaced = ' '.join(subtitle)   # espaçamento suave — 1 espaço entre chars
 
 bbox_s = draw.textbbox((0, 0), subtitle_spaced, font=font_sub)

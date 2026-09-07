@@ -94,7 +94,8 @@ def draw_icon(size: int) -> Image.Image:
 
 
 def main():
-    out_dir = r'c:\Users\cleit\OneDrive\Documentos\reciboPro\resources'
+    repo_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    out_dir = os.path.join(repo_root, 'resources')
     os.makedirs(out_dir, exist_ok=True)
 
     # PNG mestre 256px

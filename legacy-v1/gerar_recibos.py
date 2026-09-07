@@ -33,6 +33,13 @@ from reportlab.platypus import (
 
 log = logging.getLogger(__name__)
 
+# Dados da empresa emissora do recibo.
+# Ajuste os valores abaixo (ou defina as variáveis de ambiente) antes de usar.
+EMPRESA_NOME = os.environ.get('RECIBO_EMPRESA', 'EMPRESA EXEMPLO LTDA')
+EMPRESA_CNPJ = os.environ.get('RECIBO_CNPJ', '00.000.000/0001-00')
+EMPRESA_SEDE = os.environ.get('RECIBO_SEDE', 'Cidade - UF, Rua Exemplo, 000 - Bairro')
+EMPRESA_CIDADE = os.environ.get('RECIBO_CIDADE', 'Cidade - UF')
+
 
 def setup_logging() -> str:
     """Configura logging para arquivo rotativo em %APPDATA%/GeradorRecibos/.
@@ -125,9 +132,9 @@ def montar_recibo(nome: str, total: float, data_str: str, styles: dict) -> list:
     valor_str = valor_por_extenso(total)
 
     corpo_texto = (
-        'Recebi da empresa <b>GF MUNIZ ARTEFACTOS DE CERAMICA EIRELI</b>, pessoa jurídica de '
-        'direito privado, inscrita no CNPJ sob o n 12.509.424/0001-65, com sede na cidade de '
-        'Bela Cruz - CE ROD CE 179 - KM 12 - S/N - Zona Rural, a quantia de '
+        f'Recebi da empresa <b>{EMPRESA_NOME}</b>, pessoa jurídica de '
+        f'direito privado, inscrita no CNPJ sob o n {EMPRESA_CNPJ}, com sede em '
+        f'{EMPRESA_SEDE}, a quantia de '
         f'<b>{valor_str}</b>. '
         f'Referente a serviço de diárias no dia {data_str}. '
         'dando-lhe por este recibo a devida quitação.'
@@ -141,7 +148,7 @@ def montar_recibo(nome: str, total: float, data_str: str, styles: dict) -> list:
         Spacer(1, 0.5 * cm),
         Paragraph(corpo_texto, styles['corpo']),
         Spacer(1, 0.4 * cm),
-        Paragraph(f'Bela Cruz, {data_str}.', styles['corpo']),
+        Paragraph(f'{EMPRESA_CIDADE}, {data_str}.', styles['corpo']),
         Spacer(1, 1.8 * cm),
         HRFlowable(width='55%', thickness=1, color=colors.black, hAlign='CENTER'),
         Spacer(1, 0.25 * cm),
@@ -301,9 +308,9 @@ def gerar_preview_pil(funcionario: dict, width: int = 420):
     valor_str = valor_por_extenso(funcionario['total'])
     data_str  = formatar_data(datetime.today())
     corpo = (
-        f'Recebi da empresa GF MUNIZ ARTEFACTOS DE CERAMICA EIRELI, pessoa jurídica '
-        f'de direito privado, inscrita no CNPJ sob o n 12.509.424/0001-65, com sede '
-        f'na cidade de Bela Cruz - CE ROD CE 179 - KM 12 - S/N - Zona Rural, a '
+        f'Recebi da empresa {EMPRESA_NOME}, pessoa jurídica '
+        f'de direito privado, inscrita no CNPJ sob o n {EMPRESA_CNPJ}, com sede '
+        f'em {EMPRESA_SEDE}, a '
         f'quantia de {valor_str}. Referente a serviço de diárias no dia {data_str}. '
         f'Dando-lhe por este recibo a devida quitação.'
     )
@@ -314,7 +321,7 @@ def gerar_preview_pil(funcionario: dict, width: int = 420):
     y += sp_after_corpo
 
     # Data — TA_JUSTIFY (alinhado à esquerda)
-    draw.text((PAD, y), f'Bela Cruz, {data_str}.', font=f_body, fill=C_BLACK)
+    draw.text((PAD, y), f'{EMPRESA_CIDADE}, {data_str}.', font=f_body, fill=C_BLACK)
     y += leading + sp_before_sig
 
     # Linha de assinatura — HRFlowable width='55%', hAlign='CENTER'
@@ -401,9 +408,9 @@ def iniciar_gui():
         ctk.CTkLabel(left, image=ctk_logo, text='', anchor='center').pack(
             fill='x', pady=(0, 20))
     else:
-        ctk.CTkLabel(left, text='FORTE TELHA', font=ctk.CTkFont('Segoe UI', 22, 'bold'),
+        ctk.CTkLabel(left, text=EMPRESA_NOME, font=ctk.CTkFont('Segoe UI', 22, 'bold'),
                      text_color=ACCENT, anchor='w').pack(fill='x')
-        ctk.CTkLabel(left, text='INDÚSTRIA DE CERÂMICA',
+        ctk.CTkLabel(left, text='RECIBOS DE PRESTAÇÃO DE SERVIÇO',
                      font=F_LABEL, text_color=DIM2, anchor='w').pack(fill='x', pady=(2, 16))
 
     # ── Inputs — micro-labels empilhados ────────────────────────────────────
