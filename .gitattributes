@@ -9,6 +9,8 @@
 # Binários — nunca aplicar conversão nem diff textual
 *.png binary
 *.jpg binary
+*.gif binary
+*.mp4 binary
 *.jpeg binary
 *.gif binary
 *.ico binary
