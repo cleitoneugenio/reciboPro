@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <title>Forte Telha — App Icon</title>
+  <rect width="240" height="240" rx="52" ry="52" fill="#C0391B"></rect>
+  <g transform="translate(120 122)">
+    <rect x="-58" y="-74" width="116" height="152" rx="8" fill="#FFFFFF"></rect>
+    <path d="M -58 62 L -50 74 L -42 62 L -34 74 L -26 62 L -18 74 L -10 62 L -2 74 L 6 62 L 14 74 L 22 62 L 30 74 L 38 62 L 46 74 L 54 62 L 58 70 L 58 78 L -58 78 Z" fill="#C0391B"></path>
+    <rect x="-58" y="-74" width="116" height="22" fill="#C0391B"></rect>
+    <text x="0" y="-59" text-anchor="middle" font-family="Georgia, &#39;Times New Roman&#39;, serif" font-weight="900" font-size="15" fill="#FFFFFF" letter-spacing="1.2">FORTE TELHA</text>
+    <text x="0" y="32" text-anchor="middle" font-family="Segoe UI, -apple-system, system-ui, sans-serif" font-weight="900" font-size="72" fill="#C0391B" letter-spacing="-3">R$</text>
+  </g>
+</svg>

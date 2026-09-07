@@ -1,0 +1,43 @@
+# Python (V1)
+__pycache__/
+*.py[cod]
+*.pyo
+venv/
+.venv/
+.pytest_cache/
+
+# PyInstaller (V1)
+build/
+dist/
+*.spec
+!GeradorRecibos.spec
+recibo.ico
+recibo.png
+
+# Fontes (V1)
+_*.ttf
+
+# Electron / Node (V2)
+node_modules/
+out/
+release/
+.env
+*.local
+
+# PDFs e planilhas gerados / dados sensíveis
+*_recibos.pdf
+documentacao_gerar_recibos.pdf
+documentacao_recibopro_v2.pdf
+*.xlsx
+*.xls
+# ...exceto a planilha de exemplo empacotada no app (electron-builder extraResources)
+!resources/sample/exemplo-recibopro.xlsx
+
+# Ferramentas locais (por máquina)
+.claude/settings.local.json
+
+# Artefatos de desenvolvimento (previews / scratch)
+icone-comparacao.png
+icone-final.png
+icone-preview.png
+scheenshot_gui.png.png

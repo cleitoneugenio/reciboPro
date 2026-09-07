@@ -1,0 +1,52 @@
+appId: com.highermind.recibopro
+productName: ReciboPro
+copyright: Copyright © 2025 HigherMind
+
+directories:
+  buildResources: resources
+  output: dist
+
+files:
+  - out/**/*
+
+# Sample spreadsheet bundled inside the package so the app is testable
+# with zero external downloads (used by the in-app "Carregar exemplo" button).
+extraResources:
+  - from: resources/sample/exemplo-recibopro.xlsx
+    to: exemplo-recibopro.xlsx
+
+win:
+  icon: resources/icon.ico
+  artifactName: "${productName}-${version}-Setup.${ext}"
+  target:
+    - target: nsis
+      arch: x64
+    - target: appx
+      arch: x64
+
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  installerIcon: resources/icon.ico
+  uninstallerIcon: resources/icon.ico
+  license: resources/LICENSE.rtf
+
+# ─── Microsoft Store (MSIX/AppX) ─────────────────────────────────────────────
+# IMPORTANT: Before building for the Store, replace the publisher values below
+# with the exact CN string from your Microsoft Partner Center account.
+# Go to: Partner Center → Account settings → Legal info → Publisher display name
+# The "publisher" field must match the CN shown in your Partner Center identity.
+# Example: publisher: "CN=Cleiton Eugenio, O=HigherMind, C=BR"
+# ─────────────────────────────────────────────────────────────────────────────
+appx:
+  applicationId: ReciboPro
+  backgroundColor: "#1B4ECC"
+  displayName: ReciboPro
+  identityName: CleitonEugenio.ReciboPro
+  publisher: "CN=58749C1B-798E-462B-AA80-0FCB2D1DB879"
+  publisherDisplayName: Cleiton Eugenio
+  languages:
+    - pt-BR
+  showNameOnTiles: false
